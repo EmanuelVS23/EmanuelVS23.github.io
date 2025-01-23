@@ -1,52 +1,97 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Formulario Contacto</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/estilos.css"/>
-    </head>
-    <body>
-        <header>
-            <a href="http://localhost:8383/Practica%201/index.html" target="-bank">Regresar</a>
-            <h1>Formulario Web</h1>
-            <fieldset>
-                <legend>Detalles de Contacto</legend>
-                <form action="#">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" autofocus="" placeholder="Escribe tu nombre" name="nombre"
-                           required="required" pattern="[a-zA-Z\s]{5,}"/>
-                    <span class="invalid">*El nombre es requerido</span>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
 
-                    <label for="email"/>Email:</label>
-                    <input type="email" name="email" required="" placeholder="Escribe tu email"/>
-                    <span class="invalid">*El email es requerido</span>
+        h1 {
+            color: #333;
+        }
 
-                    <label for="email"/>Telefono:</label>
-                    <input type="tel" name="telefono" required="" placeholder="Escribe tu Telefono"
-                           pattern="[0-9]{10}"/>
-                    <span class="invalid">*El telefono es requerido</span>
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            margin: 10px 0;
+            width: 150px;
+            text-align: center;
+        }
 
-                    <label for="email"/>Pais:</label>
-                    <input name="pais" list="paises" placeholder="Escribe/Selecciona tu pais"/>
-                    <datalist id="paises">
-                        <option>Mexico</option>
-                        <option>España</option>
-                        <option>Canada</option>
-                        <option>Otro</option>
-                    </datalist>
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
 
-                    <label>Edad:</label>
-                    <input type="number" name="edad" min="18" max="65"/>
+        .result {
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
 
-                    <label for="nacimiento">Fecha de nacimiento</label>
-                    <input type="date" name="nacimiento" min="1990-01-01" max="2002-01-01"/>
+        .error {
+            color: red;
+        }
 
-                    <div>
-                        <input type="submit" value="Enviar" id="enviar"/>
-                    </div>
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adivina el Número</h1>
+    <p>Ingresa un número entre 1 y 100:</p>
+    <input type="number" id="guess" min="1" max="100">
+    <button onclick="checkGuess()">Comprobar</button>
 
-                </form>
-            </fieldset>
-        </header>
-    </body>
+    <div class="result" id="result"></div>
+
+    <script>
+        // Generar un número aleatorio entre 1 y 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0; // Contador de intentos
+
+        // Función para comprobar el intento del jugador
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guess').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(userGuess)) {
+                resultDiv.textContent = "¡Por favor ingresa un número válido!";
+                resultDiv.classList.add('error');
+                return;
+            }
+
+            attempts++;
+
+            if (userGuess < randomNumber) {
+                resultDiv.textContent = "Demasiado bajo. Intenta nuevamente.";
+                resultDiv.classList.remove('success');
+                resultDiv.classList.add('error');
+            } else if (userGuess > randomNumber) {
+                resultDiv.textContent = "Demasiado alto. Intenta nuevamente.";
+                resultDiv.classList.remove('success');
+                resultDiv.classList.add('error');
+            } else {
+                resultDiv.textContent = `¡Correcto! Adivinaste el número en ${attempts} intentos.`;
+                resultDiv.classList.remove('error');
+                resultDiv.classList.add('success');
+            }
+        }
+    </script>
+</body>
 </html>
