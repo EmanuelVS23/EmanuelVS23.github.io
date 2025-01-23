@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario Contacto</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/estilos.css"/>
+    </head>
+    <body>
+        <header>
+            <a href="http://localhost:8383/Practica%201/index.html" target="-bank">Regresar</a>
+            <h1>Formulario Web</h1>
+            <fieldset>
+                <legend>Detalles de Contacto</legend>
+                <form action="#">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" autofocus="" placeholder="Escribe tu nombre" name="nombre"
+                           required="required" pattern="[a-zA-Z\s]{5,}"/>
+                    <span class="invalid">*El nombre es requerido</span>
+
+                    <label for="email"/>Email:</label>
+                    <input type="email" name="email" required="" placeholder="Escribe tu email"/>
+                    <span class="invalid">*El email es requerido</span>
+
+                    <label for="email"/>Telefono:</label>
+                    <input type="tel" name="telefono" required="" placeholder="Escribe tu Telefono"
+                           pattern="[0-9]{10}"/>
+                    <span class="invalid">*El telefono es requerido</span>
+
+                    <label for="email"/>Pais:</label>
+                    <input name="pais" list="paises" placeholder="Escribe/Selecciona tu pais"/>
+                    <datalist id="paises">
+                        <option>Mexico</option>
+                        <option>España</option>
+                        <option>Canada</option>
+                        <option>Otro</option>
+                    </datalist>
+
+                    <label>Edad:</label>
+                    <input type="number" name="edad" min="18" max="65"/>
+
+                    <label for="nacimiento">Fecha de nacimiento</label>
+                    <input type="date" name="nacimiento" min="1990-01-01" max="2002-01-01"/>
+
+                    <div>
+                        <input type="submit" value="Enviar" id="enviar"/>
+                    </div>
+
+                </form>
+            </fieldset>
+        </header>
+    </body>
+</html>
